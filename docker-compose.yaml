@@ -6,11 +6,12 @@ services:
     restart: unless-stopped
     container_name: mysql
     ports:
-      - "3307:3306"
+      - "3306:3306"
     volumes:
       - .docker/data/mysql-db:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: rbac
       MYSQL_DATABASE: casbin
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root
+      MYSQL_USER: rbac
+      MYSQL_PASSWORD: rbac
+      MYSQL_ROOT_HOST: localhost
