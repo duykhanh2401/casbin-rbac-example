@@ -1,0 +1,16 @@
+version: '3.4'
+
+services:
+  mysql:
+    image: mysql:8.0.32-debian
+    restart: unless-stopped
+    container_name: mysql
+    ports:
+      - "3307:3306"
+    volumes:
+      - .docker/data/mysql-db:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: casbin
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
