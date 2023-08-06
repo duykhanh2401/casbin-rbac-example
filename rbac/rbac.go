@@ -8,7 +8,7 @@ import (
 	"github.com/jmoiron/sqlx"
 )
 
-var rbac *casbin.Enforcer
+var RBAC *casbin.Enforcer
 
 func Setup() *casbin.Enforcer {
 	dataSourceName := "rbac:rbac@(localhost:3306)/casbin"
@@ -16,7 +16,12 @@ func Setup() *casbin.Enforcer {
 	if err != nil {
 		panic(err)
 	}
-
+	// sub: Đối tượng muốn truy cập vào 1 tài nguyên
+	// obj: Tài nguyên sẽ đc truy cập
+	// act: Phương thức mà ng dùng thực hiện trên tài nguyên
+	// request: Phần gửi lên để check
+	// policy: Phần tài nguyên đc định nghĩa để kiểm tra
+	// role: User - Role
 	text := `
         [request_definition]
         r = sub, obj, act
@@ -56,7 +61,7 @@ func Setup() *casbin.Enforcer {
 	}
 
 	r.LoadPolicy()
-	rbac = r
+	RBAC = r
 
 	return r
 
