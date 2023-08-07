@@ -48,6 +48,8 @@ func Setup() *casbin.Enforcer {
         m2 = keyMatch2(r2.obj, p2.obj) && r2.act == p2.act && g2(r2.sub, keyGet2(r2.obj, p2.obj, 'id'), p2.sub)    
         m3 = keyMatch2(r3.obj, p3.obj) && r3.act == p3.act && g3(r3.sub, keyGet2(r3.obj, p3.obj, 'id'), p3.sub)
     `
+	// KeyMatch2: /alice_data/resource1 === /alice_data/:resource
+	// KeyGet2: (/proj/id1, /proj/:id, "id") => id1
 	m, err := model.NewModelFromString(text)
 	if err != nil {
 		panic(err)
